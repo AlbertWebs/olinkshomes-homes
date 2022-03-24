@@ -2,6 +2,7 @@
     Template Name: Quarter
     Description: Real Estate HTML Template
     Version: 1.0.0
+    Author:Designekta Studios
 */
 /* Single side border-radius  */
 /* BORDER RADIUS */
@@ -5283,11 +5284,13 @@ ul.wp-block-latest-posts.is-grid.alignwide {
   margin-left: 15px;
   -ms-flex-item-align: center;
   -ms-grid-row-align: center;
-  align-self: center; }
+  align-self: center;
+  border-radius:15px;
+ }
   .special-link a {
     background-color: var(--ltn__secondary-color);
     color: var(--white) !important;
-    padding: 12px 30px !important; }
+    padding: 12px 30px !important; border-radius:10px; }
     .special-link a:hover {
       background-color: var(--section-bg-1);
       color: var(--ltn__primary-color) !important; }
