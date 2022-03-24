@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '35ae456042e3b593ec83e5eb6c3d827ee9cc6d7b',
+    'reference' => '6a0bfe153c9626f091b0b99b324ac36d8a8814c2',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -445,7 +445,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '35ae456042e3b593ec83e5eb6c3d827ee9cc6d7b',
+      'reference' => '6a0bfe153c9626f091b0b99b324ac36d8a8814c2',
     ),
     'laravel/serializable-closure' => 
     array (
@@ -464,6 +464,15 @@
       array (
       ),
       'reference' => '5f2f9815b7631b9f586a3de7933c25f9327d4073',
+    ),
+    'laravel/ui' => 
+    array (
+      'pretty_version' => 'v3.4.5',
+      'version' => '3.4.5.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'f11d295de1508c5bb56206a620b00b6616de414c',
     ),
     'league/commonmark' => 
     array (
