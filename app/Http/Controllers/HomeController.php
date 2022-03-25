@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class HomeController extends Controller
 {
@@ -11,14 +12,14 @@ class HomeController extends Controller
         return view('front.index');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function adminHome()
-    {
-        return view('adminHome');
+    public function homes(){
+        return view('front.homes');
     }
+
+    public function home($slung){
+        $Home = DB::table('homes')->where('slung',$slung)->get();
+        return view('front.home',compact('Home'));
+    }
+
 
 }
