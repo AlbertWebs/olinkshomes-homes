@@ -9,11 +9,12 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="ltn__breadcrumb-inner">
-                        <h1 class="page-title">Product Details</h1>
+                        <h1 class="page-title">{{$home->title}}</h1>
                         <div class="ltn__breadcrumb-list">
                             <ul>
-                                <li><a href="index.html"><span class="ltn__secondary-color"><i class="fas fa-home"></i></span> Home</a></li>
-                                <li>Product Details</li>
+                                <li><a href="{{url('/')}}"><span class="ltn__secondary-color"><i class="fas fa-home"></i></span> Home</a></li>
+                                <li>Olinks Homes</li>
+                                <li>{{$home->title}}</li>
                             </ul>
                         </div>
                     </div>
@@ -524,254 +525,6 @@
                         </a>
                     </div>
 
-                    <div class="ltn__shop-details-tab-content-inner--- ltn__shop-details-tab-inner-2 ltn__product-details-review-inner mb-60">
-                        <h4 class="title-2">Customer Reviews</h4>
-                        <div class="product-ratting">
-                            <ul>
-                                <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
-                                <li><a href="#"><i class="far fa-star"></i></a></li>
-                                <li class="review-total"> <a href="#"> ( 95 Reviews )</a></li>
-                            </ul>
-                        </div>
-                        <hr>
-                        <!-- comment-area -->
-                        <div class="ltn__comment-area mb-30">
-                            <div class="ltn__comment-inner">
-                                <ul>
-                                    <li>
-                                        <div class="ltn__comment-item clearfix">
-                                            <div class="ltn__commenter-img">
-                                                <img src="{{asset('theme/img/testimonial/1.jpg')}}" alt="Image">
-                                            </div>
-                                            <div class="ltn__commenter-comment">
-                                                <h6><a href="#">Adam Smit</a></h6>
-                                                <div class="product-ratting">
-                                                    <ul>
-                                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                        <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
-                                                        <li><a href="#"><i class="far fa-star"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, omnis fugit corporis iste magnam ratione.</p>
-                                                <span class="ltn__comment-reply-btn">September 3, 2020</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="ltn__comment-item clearfix">
-                                            <div class="ltn__commenter-img">
-                                                <img src="{{asset('theme/img/testimonial/3.jpg')}}" alt="Image">
-                                            </div>
-                                            <div class="ltn__commenter-comment">
-                                                <h6><a href="#">Adam Smit</a></h6>
-                                                <div class="product-ratting">
-                                                    <ul>
-                                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                        <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
-                                                        <li><a href="#"><i class="far fa-star"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, omnis fugit corporis iste magnam ratione.</p>
-                                                <span class="ltn__comment-reply-btn">September 2, 2020</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="ltn__comment-item clearfix">
-                                            <div class="ltn__commenter-img">
-                                                <img src="{{asset('theme/img/testimonial/2.jpg')}}" alt="Image">
-                                            </div>
-                                            <div class="ltn__commenter-comment">
-                                                <h6><a href="#">Adam Smit</a></h6>
-                                                <div class="product-ratting">
-                                                    <ul>
-                                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                        <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
-                                                        <li><a href="#"><i class="far fa-star"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, omnis fugit corporis iste magnam ratione.</p>
-                                                <span class="ltn__comment-reply-btn">September 2, 2020</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- comment-reply -->
-                        <div class="ltn__comment-reply-area ltn__form-box mb-30">
-                            <form action="#">
-                                <h4>Add a Review</h4>
-                                <div class="mb-30">
-                                    <div class="add-a-review">
-                                        <h6>Your Ratings:</h6>
-                                        <div class="product-ratting">
-                                            <ul>
-                                                <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="input-item input-item-textarea ltn__custom-icon">
-                                    <textarea placeholder="Type your comments...."></textarea>
-                                </div>
-                                <div class="input-item input-item-name ltn__custom-icon">
-                                    <input type="text" placeholder="Type your name....">
-                                </div>
-                                <div class="input-item input-item-email ltn__custom-icon">
-                                    <input type="email" placeholder="Type your email....">
-                                </div>
-                                <div class="input-item input-item-website ltn__custom-icon">
-                                    <input type="text" name="website" placeholder="Type your website....">
-                                </div>
-                                <label class="mb-0"><input type="checkbox" name="agree"> Save my name, email, and website in this browser for the next time I comment.</label>
-                                <div class="btn-wrapper">
-                                    <button class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Submit</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                    <h4 class="title-2">Related Properties</h4>
-                    <div class="row">
-                        <!-- ltn__product-item -->
-                        <div class="col-xl-6 col-sm-6 col-12">
-                            <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
-                                <div class="product-img">
-                                    <a href="product-details.html"><img src="{{asset('theme/img/product-3/1.jpg')}}" alt="#"></a>
-                                    <div class="real-estate-agent">
-                                        <div class="agent-img">
-                                            <a href="team-details.html"><img src="{{asset('theme/img/blog/author.jpg')}}" alt="#"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-info">
-                                    <div class="product-badge">
-                                        <ul>
-                                            <li class="sale-badg">For Rent</li>
-                                        </ul>
-                                    </div>
-                                    <h2 class="product-title"><a href="product-details.html">New Apartment Nice View</a></h2>
-                                    <div class="product-img-location">
-                                        <ul>
-                                            <li>
-                                                <a href="product-details.html"><i class="flaticon-pin"></i> Belmont Gardens, Chicago</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <ul class="ltn__list-item-2--- ltn__list-item-2-before--- ltn__plot-brief">
-                                        <li><span>3 </span>
-                                            Bedrooms
-                                        </li>
-                                        <li><span>2 </span>
-                                            Bathrooms
-                                        </li>
-                                        <li><span>3450 </span>
-                                            square Ft
-                                        </li>
-                                    </ul>
-                                    <div class="product-hover-action">
-                                        <ul>
-                                            <li>
-                                                <a href="#" title="Quick View" data-bs-toggle="modal" data-bs-target="#quick_view_modal">
-                                                    <i class="flaticon-expand"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" title="Wishlist" data-bs-toggle="modal" data-bs-target="#liton_wishlist_modal">
-                                                    <i class="flaticon-heart-1"></i></a>
-                                            </li>
-                                            <li>
-                                                <a href="portfolio-details.html" title="Compare">
-                                                    <i class="flaticon-add"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="product-info-bottom">
-                                    <div class="product-price">
-                                        <span>$349,00<label>/Month</label></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- ltn__product-item -->
-                        <div class="col-xl-6 col-sm-6 col-12">
-                            <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
-                                <div class="product-img">
-                                    <a href="product-details.html"><img src="{{asset('theme/img/product-3/2.jpg')}}" alt="#"></a>
-                                    <div class="real-estate-agent">
-                                        <div class="agent-img">
-                                            <a href="team-details.html"><img src="{{asset('theme/img/blog/author.jpg')}}" alt="#"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-info">
-                                    <div class="product-badge">
-                                        <ul>
-                                            <li class="sale-badg">For Sale</li>
-                                        </ul>
-                                    </div>
-                                    <h2 class="product-title"><a href="product-details.html">New Apartment Nice View</a></h2>
-                                    <div class="product-img-location">
-                                        <ul>
-                                            <li>
-                                                <a href="product-details.html"><i class="flaticon-pin"></i> Belmont Gardens, Chicago</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <ul class="ltn__list-item-2--- ltn__list-item-2-before--- ltn__plot-brief">
-                                        <li><span>3 </span>
-                                            Bedrooms
-                                        </li>
-                                        <li><span>2 </span>
-                                            Bathrooms
-                                        </li>
-                                        <li><span>3450 </span>
-                                            square Ft
-                                        </li>
-                                    </ul>
-                                    <div class="product-hover-action">
-                                        <ul>
-                                            <li>
-                                                <a href="#" title="Quick View" data-bs-toggle="modal" data-bs-target="#quick_view_modal">
-                                                    <i class="flaticon-expand"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" title="Wishlist" data-bs-toggle="modal" data-bs-target="#liton_wishlist_modal">
-                                                    <i class="flaticon-heart-1"></i></a>
-                                            </li>
-                                            <li>
-                                                <a href="portfolio-details.html" title="Compare">
-                                                    <i class="flaticon-add"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="product-info-bottom">
-                                    <div class="product-price">
-                                        <span>$349,00<label>/Month</label></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="col-lg-4">
@@ -843,8 +596,8 @@
                                         </div>
                                         <h6><a href="product-details.html">Luxury House In Greenville </a></h6>
                                         <div class="product-price">
-                                            <span>$30,000.00</span>
-                                            <del>$35,000.00</del>
+                                            <span>KES30,000.00</span>
+                                            <del>KES35,000.00</del>
                                         </div>
                                     </div>
                                 </div>
@@ -866,8 +619,8 @@
                                         </div>
                                         <h6><a href="product-details.html">Apartment with Subunits</a></h6>
                                         <div class="product-price">
-                                            <span>$30,000.00</span>
-                                            <del>$35,000.00</del>
+                                            <span>KES30,000.00</span>
+                                            <del>KES35,000.00</del>
                                         </div>
                                     </div>
                                 </div>
@@ -889,8 +642,8 @@
                                         </div>
                                         <h6><a href="product-details.html">3 Rooms Manhattan</a></h6>
                                         <div class="product-price">
-                                            <span>$30,000.00</span>
-                                            <del>$35,000.00</del>
+                                            <span>KES30,000.00</span>
+                                            <del>KES35,000.00</del>
                                         </div>
                                     </div>
                                 </div>
@@ -925,7 +678,7 @@
                                     </div>
                                     <div class="product-info">
                                         <div class="product-price">
-                                            <span>$349,00<label>/Month</label></span>
+                                            <span>KES349,00<label>/Month</label></span>
                                         </div>
                                         <h2 class="product-title"><a href="product-details.html">New Apartment Nice View</a></h2>
                                         <div class="product-img-location">
@@ -962,7 +715,7 @@
                                     </div>
                                     <div class="product-info">
                                         <div class="product-price">
-                                            <span>$349,00<label>/Month</label></span>
+                                            <span>KES349,00<label>/Month</label></span>
                                         </div>
                                         <h2 class="product-title"><a href="product-details.html">New Apartment Nice View</a></h2>
                                         <div class="product-img-location">
@@ -999,7 +752,7 @@
                                     </div>
                                     <div class="product-info">
                                         <div class="product-price">
-                                            <span>$349,00<label>/Month</label></span>
+                                            <span>KES349,00<label>/Month</label></span>
                                         </div>
                                         <h2 class="product-title"><a href="product-details.html">New Apartment Nice View</a></h2>
                                         <div class="product-img-location">
@@ -1216,7 +969,7 @@
                     </div>
                     <div class="product-info-bottom">
                         <div class="product-price">
-                            <span>$349,00<label>/Month</label></span>
+                            <span>KES349,00<label>/Month</label></span>
                         </div>
                     </div>
                 </div>
@@ -1278,7 +1031,7 @@
                     </div>
                     <div class="product-info-bottom">
                         <div class="product-price">
-                            <span>$349,00<label>/Month</label></span>
+                            <span>KES349,00<label>/Month</label></span>
                         </div>
                     </div>
                 </div>
@@ -1340,7 +1093,7 @@
                     </div>
                     <div class="product-info-bottom">
                         <div class="product-price">
-                            <span>$349,00<label>/Month</label></span>
+                            <span>KES349,00<label>/Month</label></span>
                         </div>
                     </div>
                 </div>
@@ -1402,7 +1155,7 @@
                     </div>
                     <div class="product-info-bottom">
                         <div class="product-price">
-                            <span>$349,00<label>/Month</label></span>
+                            <span>KES349,00<label>/Month</label></span>
                         </div>
                     </div>
                 </div>
@@ -1464,7 +1217,7 @@
                     </div>
                     <div class="product-info-bottom">
                         <div class="product-price">
-                            <span>$349,00<label>/Month</label></span>
+                            <span>KES349,00<label>/Month</label></span>
                         </div>
                     </div>
                 </div>

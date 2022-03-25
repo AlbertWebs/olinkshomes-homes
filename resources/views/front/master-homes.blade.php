@@ -112,25 +112,8 @@
                         <div class="header-menu d-none d-xl-block">
                             <nav>
                                 <div class="ltn__main-menu">
-                                    <ul>
-                                        <li class=""><a href="#">Home</a>
+                                    @include('front.menu')
 
-                                        </li>
-                                        <li><a href="#">About</a>
-
-                                        </li>
-                                        <li><a href="{{url('/')}}/olinks-homes">Homes</a>
-
-                                        </li>
-                                        <li>
-                                            <a href="#">Shop</a>
-
-                                        </li>
-
-
-                                        <li><a href="{{url('/')}}/contact-us">Contact Us</a></li>
-
-                                    </ul>
                                 </div>
                             </nav>
                         </div>
@@ -202,24 +185,7 @@
                 </form>
             </div>
             <div class="ltn__utilize-menu">
-                <ul>
-                    <li class=""><a href="#">Home</a>
-
-                    </li>
-                    <li><a href="#">About</a>
-
-                    </li>
-                    <li><a href="{{url('/')}}/olinks-homes">Homes</a>
-
-                    </li>
-                    <li>
-                        <a href="#">Shop</a>
-
-                    </li>
-
-
-                    <li><a href="{{url('/')}}/contact-us">Contact Us</a></li>
-                </ul>
+            @include('front.menu')
             </div>
             <div class="ltn__social-media-2">
                 <ul>
