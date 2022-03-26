@@ -89,10 +89,12 @@
                             <li><label>Property Status:</label> <span>@if($home->sold == "In Stock") Available @else Sold @endif</span></li>
                         </ul>
                     </div>
+                    <?php $Facts = DB::table('facts')->where('property_id', $home->id)->get(); ?>
+                    @if($Facts->isEmpty())
 
+                    @else
                     <h4 class="title-2">Facts and Features</h4>
                     <div class="property-detail-feature-list clearfix mb-45">
-                        <?php $Facts = DB::table('facts')->where('property_id', $home->id)->get(); ?>
                         @foreach ($Facts as $facts)
                         <ul>
                             <li>
@@ -170,11 +172,12 @@
                         </ul>
                         @endforeach
                     </div>
+                    @endif
 
 
 
 
-                    <h4 class="title-2">From Our Gallery</h4>
+                    <h4 id="photos" class="title-2">From Our Gallery</h4>
                     <div class="ltn__property-details-gallery mb-30">
                         <div class="row">
                             <?php $Gallery = DB::table('galleries')->where('home_id',$home->id)->get(); ?>
@@ -187,13 +190,16 @@
                             @endforeach
                         </div>
                     </div>
+                    <?php $Amenities = DB::table('amenities')->where('property_id',$home->id)->get(); ?>
+                    @if($Amenities->isEmpty())
 
+                    @else
                     <h4 class="title-2 mb-10">Amenities</h4>
                     <div class="property-details-amenities mb-60">
                         <div class="row">
                             <div class="col-lg-4 col-md-6">
                                 <div class="ltn__menu-widget">
-                                    <?php $Amenities = DB::table('amenities')->where('property_id',$home->id)->get(); ?>
+
                                     @foreach ($Amenities as $amen)
                                     <ul>
                                         <li>
@@ -239,6 +245,7 @@
                                                 <span class="checkmark"></span>
                                             </label>
                                         </li>
+
                                         <li>
                                             <label class="checkbox-item">Recreation
                                                 <input type="checkbox" checked="{{switcher($amen->recreation)}}">
@@ -299,6 +306,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
 
                     <h4 class="title-2">Location</h4>
                     <div class="property-details-google-map mb-60">
