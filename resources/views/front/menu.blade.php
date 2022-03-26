@@ -12,5 +12,5 @@
         <a href="https://shop.olonkshomes.com">Shop</a>
 
     </li>
-    <li><a href="{{url('/')}}/contact-us">Contact Us</a></li>
+    <li><a href="{{env('LANDING')}}/contact-us">Contact Us</a></li>
 </ul>

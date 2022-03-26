@@ -14,7 +14,7 @@
     </li>
 
 
-    <li><a href="{{url('/')}}/contact-us">Contact Us</a></li>
+    <li><a href="{{env('LANDING')}}/contact-us">Contact Us</a></li>
     <li class="special-link">
         <a href="{{url('/')}}">Add Listing</a>
     </li>
