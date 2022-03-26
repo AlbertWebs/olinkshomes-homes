@@ -27,42 +27,19 @@
 <!-- IMAGE SLIDER AREA START (img-slider-3) -->
 <div class="ltn__img-slider-area mb-90">
     <div class="container-fluid">
+
         <div class="row ltn__image-slider-5-active slick-arrow-1 slick-arrow-1-inner ltn__no-gutter-all">
+            {{-- Stream Gallery Here --}}
+            <?php $Gallery = DB::table('galleries')->where('home_id',$home->id)->get(); ?>
+            @foreach ($Gallery as $gallery)
             <div class="col-lg-12">
                 <div class="ltn__img-slide-item-4">
-                    <a href="{{asset('theme/img/img-slide/31.jpg')}}" data-rel="lightcase:myCollection">
-                        <img src="{{asset('theme/img/img-slide/31.jpg')}}" alt="Image">
+                    <a href="{{env('LANDING')}}/uploads/homes/{{$gallery->name}}" data-rel="lightcase:myCollection">
+                        <img src="{{env('LANDING')}}/uploads/homes/{{$gallery->name}}" alt="{{$home->title}}">
                     </a>
                 </div>
             </div>
-            <div class="col-lg-12">
-                <div class="ltn__img-slide-item-4">
-                    <a href="{{asset('theme/img/img-slide/32.jpg')}}" data-rel="lightcase:myCollection">
-                        <img src="{{asset('theme/img/img-slide/32.jpg')}}" alt="Image">
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-12">
-                <div class="ltn__img-slide-item-4">
-                    <a href="{{asset('theme/img/img-slide/33.jpg')}}" data-rel="lightcase:myCollection">
-                        <img src="{{asset('theme/img/img-slide/33.jpg')}}" alt="Image">
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-12">
-                <div class="ltn__img-slide-item-4">
-                    <a href="{{asset('theme/img/img-slide/34.jpg')}}" data-rel="lightcase:myCollection">
-                        <img src="{{asset('theme/img/img-slide/34.jpg')}}" alt="Image">
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-12">
-                <div class="ltn__img-slide-item-4">
-                    <a href="{{asset('theme/img/img-slide/35.jpg')}}" data-rel="lightcase:myCollection">
-                        <img src="{{asset('theme/img/img-slide/35.jpg')}}" alt="Image">
-                    </a>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>
@@ -77,56 +54,53 @@
                     <div class="ltn__blog-meta">
                         <ul>
                             <li class="ltn__blog-category">
-                                <a href="#">Featured</a>
+                                <a href="#">@if($home->sold == "In Stock") Available @else Sold @endif</a>
                             </li>
                             <li class="ltn__blog-category">
-                                <a class="bg-orange" href="#">For Rent</a>
+                                <a class="bg-orange" href="#">
+                                   <?php
+                                       $Category = DB::table('categories')->where('id',$home->cat)->get();
+                                    ?>
+                                    @foreach ($Category as $category) {{$category->title}} @endforeach
+                                </a>
                             </li>
-                            <li class="ltn__blog-date">
-                                <i class="far fa-calendar-alt"></i>May 19, 2021
-                            </li>
-                            <li>
-                                <a href="#"><i class="far fa-comments"></i>35 Comments</a>
-                            </li>
+
                         </ul>
                     </div>
-                    <h1>Diamond Manor Apartment</h1>
+                    <h1>{{$home->location}}</h1>
                     <label><span class="ltn__secondary-color"><i class="flaticon-pin"></i></span> Belmont Gardens, Chicago</label>
                     <h4 class="title-2">Description</h4>
-                    <p>Massa tempor nec feugiat nisl pretium. Egestas fringilla phasellus faucibus scelerisque eleifend donec
-                        Porta nibh venenatis cras sed felis eget velit aliquet. Neque volutpat ac tincidunt vitae semper
-                        quis lectus. Turpis in eu mi bibendum neque egestas congue quisque. Sed elementum tempus egestas
-                        sed sed risus pretium quam. Dignissim sodales ut eu sem. Nibh mauris cursus mattis molestee
-                        iaculis at erat pellentesque. Id interdum velit laoreet id donec ultrices tincidunt.</p>
-                    <p>To the left is the modern kitchen with central island, leading through to the unique breakfast family room which feature glass walls and doors out onto the garden and access to the separate utility room.</p>
-
+                    {{-- Description  --}}
+                    {!! html_entity_decode($home->content) !!}
                     <h4 class="title-2">Property Detail</h4>
                     <div class="property-detail-info-list section-bg-1 clearfix mb-60">
                         <ul>
-                            <li><label>Property ID:</label> <span>HZ29</span></li>
+                            <li><label>Property Name:</label> <span>{{$home->title}}</span></li>
                             <li><label>Home Area: </label> <span>120 sqft</span></li>
                             <li><label>Rooms:</label> <span>7</span></li>
                             <li><label>Baths:</label> <span>2</span></li>
-                            <li><label>Year built:</label> <span>1992</span></li>
+                            <li><label>Year built:</label> <span>2022</span></li>
                         </ul>
                         <ul>
                             <li><label>Lot Area:</label> <span>HZ29 </span></li>
                             <li><label>Lot dimensions:</label> <span>120 sqft</span></li>
                             <li><label>Beds:</label> <span>7</span></li>
                             <li><label>Price:</label> <span>2</span></li>
-                            <li><label>Property Status:</label> <span>For Sale</span></li>
+                            <li><label>Property Status:</label> <span>@if($home->sold == "In Stock") Available @else Sold @endif</span></li>
                         </ul>
                     </div>
 
                     <h4 class="title-2">Facts and Features</h4>
                     <div class="property-detail-feature-list clearfix mb-45">
+                        <?php $Facts = DB::table('facts')->where('property_id', $home->id)->get(); ?>
+                        @foreach ($Facts as $facts)
                         <ul>
                             <li>
                                 <div class="property-detail-feature-list-item">
                                     <i class="flaticon-double-bed"></i>
                                     <div>
                                         <h6>Living Room</h6>
-                                        <small>20 x 16 sq feet</small>
+                                        <small>{{$facts->living_room}}</small>
                                     </div>
                                 </div>
                             </li>
@@ -135,7 +109,7 @@
                                     <i class="flaticon-double-bed"></i>
                                     <div>
                                         <h6>Garage</h6>
-                                        <small>20 x 16 sq feet</small>
+                                        <small>{{$facts->garage}}</small>
                                     </div>
                                 </div>
                             </li>
@@ -144,7 +118,7 @@
                                     <i class="flaticon-double-bed"></i>
                                     <div>
                                         <h6>Dining Area</h6>
-                                        <small>20 x 16 sq feet</small>
+                                        <small>{{$facts->dining_area}}</small>
                                     </div>
                                 </div>
                             </li>
@@ -153,7 +127,7 @@
                                     <i class="flaticon-double-bed"></i>
                                     <div>
                                         <h6>Bedroom</h6>
-                                        <small>20 x 16 sq feet</small>
+                                        <small>{{$facts->bedroom}}</small>
                                     </div>
                                 </div>
                             </li>
@@ -162,7 +136,7 @@
                                     <i class="flaticon-double-bed"></i>
                                     <div>
                                         <h6>Bathroom</h6>
-                                        <small>20 x 16 sq feet</small>
+                                        <small>{{$facts->bathroom}}</small>
                                     </div>
                                 </div>
                             </li>
@@ -171,7 +145,7 @@
                                     <i class="flaticon-double-bed"></i>
                                     <div>
                                         <h6>Gym Area</h6>
-                                        <small>20 x 16 sq feet</small>
+                                        <small>{{$facts->gym}}</small>
                                     </div>
                                 </div>
                             </li>
@@ -180,7 +154,7 @@
                                     <i class="flaticon-double-bed"></i>
                                     <div>
                                         <h6>Garden</h6>
-                                        <small>20 x 16 sq feet</small>
+                                        <small>{{$facts->garden}}</small>
                                     </div>
                                 </div>
                             </li>
@@ -189,29 +163,28 @@
                                     <i class="flaticon-double-bed"></i>
                                     <div>
                                         <h6>Parking</h6>
-                                        <small>20 x 16 sq feet</small>
+                                        <small>{{$facts->parking}}</small>
                                     </div>
                                 </div>
                             </li>
                         </ul>
+                        @endforeach
                     </div>
+
+
+
 
                     <h4 class="title-2">From Our Gallery</h4>
                     <div class="ltn__property-details-gallery mb-30">
                         <div class="row">
-                            <div class="col-md-6">
-                                <a href="{{asset('theme/img/others/14.jpg')}}" data-rel="lightcase:myCollection">
-                                    <img class="mb-30" src="{{asset('theme/img/others/14.jpg')}}" alt="Image">
-                                </a>
-                                <a href="{{asset('theme/img/others/15.jpg')}}" data-rel="lightcase:myCollection">
-                                    <img class="mb-30" src="{{asset('theme/img/others/15.jpg')}}" alt="Image">
-                                </a>
-                            </div>
-                            <div class="col-md-6">
-                                <a href="{{asset('theme/img/others/16.jpg')}}" data-rel="lightcase:myCollection">
-                                    <img class="mb-30" src="{{asset('theme/img/others/16.jpg')}}" alt="Image">
+                            <?php $Gallery = DB::table('galleries')->where('home_id',$home->id)->get(); ?>
+                            @foreach ($Gallery as $gallery)
+                            <div class="col-md-4">
+                                <a href="{{env('LANDING')}}/uploads/homes/{{$gallery->name}}" data-rel="lightcase:myCollection">
+                                    <img class="mb-30" src="{{env('LANDING')}}/uploads/homes/{{$gallery->name}}" alt="Image">
                                 </a>
                             </div>
+                            @endforeach
                         </div>
                     </div>
 
@@ -220,38 +193,41 @@
                         <div class="row">
                             <div class="col-lg-4 col-md-6">
                                 <div class="ltn__menu-widget">
+                                    <?php $Amenities = DB::table('amenities')->where('property_id',$home->id)->get(); ?>
+                                    @foreach ($Amenities as $amen)
                                     <ul>
                                         <li>
                                             <label class="checkbox-item">Air Conditioning
-                                                <input type="checkbox" checked="checked">
+                                                <input type="checkbox" checked="{{switcher($amen->air_conditioning)}}">
                                                 <span class="checkmark"></span>
                                             </label>
                                         </li>
                                         <li>
                                             <label class="checkbox-item">Gym
-                                                <input type="checkbox" checked="checked">
+                                                <input type="checkbox" checked="{{switcher($amen->gym)}}">
                                                 <span class="checkmark"></span>
                                             </label>
                                         </li>
                                         <li>
                                             <label class="checkbox-item">Microwave
-                                                <input type="checkbox" checked="checked">
+                                                <input type="checkbox" checked="{{switcher($amen->microwave)}}">
                                                 <span class="checkmark"></span>
                                             </label>
                                         </li>
                                         <li>
                                             <label class="checkbox-item">Swimming Pool
-                                                <input type="checkbox" checked="checked">
+                                                <input type="checkbox" checked="{{switcher($amen->swimming_pool)}}">
                                                 <span class="checkmark"></span>
                                             </label>
                                         </li>
                                         <li>
                                             <label class="checkbox-item">WiFi
-                                                <input type="checkbox" checked="checked">
+                                                <input type="checkbox" checked="{{switcher($amen->wifi)}}">
                                                 <span class="checkmark"></span>
                                             </label>
                                         </li>
                                     </ul>
+                                    @endforeach
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6">
@@ -259,31 +235,31 @@
                                     <ul>
                                         <li>
                                             <label class="checkbox-item">Barbeque
-                                                <input type="checkbox" checked="checked">
+                                                <input type="checkbox" checked="{{switcher($amen->barbeque)}}">
                                                 <span class="checkmark"></span>
                                             </label>
                                         </li>
                                         <li>
                                             <label class="checkbox-item">Recreation
-                                                <input type="checkbox" checked="checked">
+                                                <input type="checkbox" checked="{{switcher($amen->recreation)}}">
                                                 <span class="checkmark"></span>
                                             </label>
                                         </li>
                                         <li>
                                             <label class="checkbox-item">Microwave
-                                                <input type="checkbox" checked="checked">
+                                                <input type="checkbox" checked="{{switcher($amen->air_conditioning)}}">
                                                 <span class="checkmark"></span>
                                             </label>
                                         </li>
                                         <li>
                                             <label class="checkbox-item">Basketball Cout
-                                                <input type="checkbox" checked="checked">
+                                                <input type="checkbox" checked="{{switcher($amen->basketball_court)}}">
                                                 <span class="checkmark"></span>
                                             </label>
                                         </li>
                                         <li>
                                             <label class="checkbox-item">Fireplace
-                                                <input type="checkbox" checked="checked">
+                                                <input type="checkbox" checked="{{switcher($amen->fireplace)}}">
                                                 <span class="checkmark"></span>
                                             </label>
                                         </li>
@@ -295,34 +271,29 @@
                                     <ul>
                                         <li>
                                             <label class="checkbox-item">Refrigerator
-                                                <input type="checkbox" checked="checked">
+                                                <input type="checkbox" checked="{{switcher($amen->refrigerator)}}">
                                                 <span class="checkmark"></span>
                                             </label>
                                         </li>
                                         <li>
                                             <label class="checkbox-item">Window Coverings
-                                                <input type="checkbox" checked="checked">
+                                                <input type="checkbox" checked="{{switcher($amen->window_coverings)}}">
                                                 <span class="checkmark"></span>
                                             </label>
                                         </li>
                                         <li>
                                             <label class="checkbox-item">Washer
-                                                <input type="checkbox" checked="checked">
+                                                <input type="checkbox" checked="{{switcher($amen->washer)}}">
                                                 <span class="checkmark"></span>
                                             </label>
                                         </li>
                                         <li>
-                                            <label class="checkbox-item">24x7 Security
-                                                <input type="checkbox" checked="checked">
+                                            <label class="checkbox-item">Elevators
+                                                <input type="checkbox" checked="{{switcher($amen->elevator)}}">
                                                 <span class="checkmark"></span>
                                             </label>
                                         </li>
-                                        <li>
-                                            <label class="checkbox-item">Indoor Game
-                                                <input type="checkbox" checked="checked">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </li>
+
                                     </ul>
                                 </div>
                             </div>
@@ -331,195 +302,13 @@
 
                     <h4 class="title-2">Location</h4>
                     <div class="property-details-google-map mb-60">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9334.271551495209!2d-73.97198251485975!3d40.668170674982946!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25b0456b5a2e7%3A0x68bdf865dda0b669!2sBrooklyn%20Botanic%20Garden%20Shop!5e0!3m2!1sen!2sbd!4v1590597267201!5m2!1sen!2sbd" width="100%" height="100%" frameborder="0" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15955.345958317548!2d36.7980916!3d-1.2711251!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xe3e8bd5c82eca045!2sOlinks%20Homes%20ShowHouse!5e0!3m2!1sen!2ske!4v1648281857723!5m2!1sen!2ske" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
 
-                    <h4 class="title-2">Floor Plans</h4>
-                    <!-- APARTMENTS PLAN AREA START -->
-                    <div class="ltn__apartments-plan-area product-details-apartments-plan mb-60">
-                        <div class="ltn__tab-menu ltn__tab-menu-3 ltn__tab-menu-top-right-- text-uppercase--- text-center---">
-                            <div class="nav">
-                                <a data-bs-toggle="tab" href="#liton_tab_3_1">First Floor</a>
-                                <a class="active show"  data-bs-toggle="tab" href="#liton_tab_3_2" class="">Second Floor</a>
-                                <a data-bs-toggle="tab" href="#liton_tab_3_3" class="">Third Floor</a>
-                                <a data-bs-toggle="tab" href="#liton_tab_3_4" class="">Top Garden</a>
-                            </div>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane fade" id="liton_tab_3_1">
-                                <div class="ltn__apartments-tab-content-inner">
-                                    <div class="row">
-                                        <div class="col-lg-7">
-                                            <div class="apartments-plan-img">
-                                                <img src="{{asset('theme/img/others/10.png')}}" alt="#">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-5">
-                                            <div class="apartments-plan-info ltn__secondary-bg--- text-color-white---">
-                                                <h2>First Floor</h2>
-                                                <p>Enimad minim veniam quis nostrud exercitation ullamco laboris.
-                                                    Lorem ipsum dolor sit amet cons aetetur adipisicing elit sedo
-                                                    eiusmod tempor.Incididunt labore et dolore magna aliqua.
-                                                    sed ayd minim veniam.</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="product-details-apartments-info-list  section-bg-1">
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <div class="apartments-info-list apartments-info-list-color mt-40---">
-                                                            <ul>
-                                                                <li><label>Total Area</label> <span>2800 Sq. Ft</span></li>
-                                                                <li><label>Bedroom</label> <span>150 Sq. Ft</span></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="apartments-info-list apartments-info-list-color mt-40---">
-                                                            <ul>
-                                                                <li><label>Belcony/Pets</label> <span>Allowed</span></li>
-                                                                <li><label>Lounge</label> <span>650 Sq. Ft</span></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade active show" id="liton_tab_3_2">
-                                <div class="ltn__product-tab-content-inner">
-                                    <div class="row">
-                                        <div class="col-lg-7">
-                                            <div class="apartments-plan-img">
-                                                <img src="{{asset('theme/img/others/10.png')}}" alt="#">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-5">
-                                            <div class="apartments-plan-info ltn__secondary-bg--- text-color-white---">
-                                                <h2>Second Floor</h2>
-                                                <p>Enimad minim veniam quis nostrud exercitation ullamco laboris.
-                                                    Lorem ipsum dolor sit amet cons aetetur adipisicing elit sedo
-                                                    eiusmod tempor.Incididunt labore et dolore magna aliqua.
-                                                    sed ayd minim veniam.</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="product-details-apartments-info-list  section-bg-1">
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <div class="apartments-info-list apartments-info-list-color mt-40---">
-                                                            <ul>
-                                                                <li><label>Total Area</label> <span>2800 Sq. Ft</span></li>
-                                                                <li><label>Bedroom</label> <span>150 Sq. Ft</span></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="apartments-info-list apartments-info-list-color mt-40---">
-                                                            <ul>
-                                                                <li><label>Belcony/Pets</label> <span>Allowed</span></li>
-                                                                <li><label>Lounge</label> <span>650 Sq. Ft</span></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="liton_tab_3_3">
-                                <div class="ltn__product-tab-content-inner">
-                                    <div class="row">
-                                        <div class="col-lg-7">
-                                            <div class="apartments-plan-img">
-                                                <img src="{{asset('theme/img/others/10.png')}}" alt="#">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-5">
-                                            <div class="apartments-plan-info ltn__secondary-bg--- text-color-white---">
-                                                <h2>Third Floor</h2>
-                                                <p>Enimad minim veniam quis nostrud exercitation ullamco laboris.
-                                                    Lorem ipsum dolor sit amet cons aetetur adipisicing elit sedo
-                                                    eiusmod tempor.Incididunt labore et dolore magna aliqua.
-                                                    sed ayd minim veniam.</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="product-details-apartments-info-list  section-bg-1">
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <div class="apartments-info-list apartments-info-list-color mt-40---">
-                                                            <ul>
-                                                                <li><label>Total Area</label> <span>2800 Sq. Ft</span></li>
-                                                                <li><label>Bedroom</label> <span>150 Sq. Ft</span></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="apartments-info-list apartments-info-list-color mt-40---">
-                                                            <ul>
-                                                                <li><label>Belcony/Pets</label> <span>Allowed</span></li>
-                                                                <li><label>Lounge</label> <span>650 Sq. Ft</span></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="liton_tab_3_4">
-                                <div class="ltn__product-tab-content-inner">
-                                    <div class="row">
-                                        <div class="col-lg-7">
-                                            <div class="apartments-plan-img">
-                                                <img src="{{asset('theme/img/others/10.png')}}" alt="#">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-5">
-                                            <div class="apartments-plan-info ltn__secondary-bg--- text-color-white---">
-                                                <h2>Top Garden</h2>
-                                                <p>Enimad minim veniam quis nostrud exercitation ullamco laboris.
-                                                    Lorem ipsum dolor sit amet cons aetetur adipisicing elit sedo
-                                                    eiusmod tempor.Incididunt labore et dolore magna aliqua.
-                                                    sed ayd minim veniam.</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="product-details-apartments-info-list  section-bg-1">
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <div class="apartments-info-list apartments-info-list-color mt-40---">
-                                                            <ul>
-                                                                <li><label>Total Area</label> <span>2800 Sq. Ft</span></li>
-                                                                <li><label>Bedroom</label> <span>150 Sq. Ft</span></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="apartments-info-list apartments-info-list-color mt-40---">
-                                                            <ul>
-                                                                <li><label>Belcony/Pets</label> <span>Allowed</span></li>
-                                                                <li><label>Lounge</label> <span>650 Sq. Ft</span></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- APARTMENTS PLAN AREA END -->
+
 
                     <h4 class="title-2">Property Video</h4>
-                    <div class="ltn__video-bg-img ltn__video-popup-height-500 bg-overlay-black-50 bg-image mb-60" data-bs-bg="img/others/5.jpg')}}">
+                    <div class="ltn__video-bg-img ltn__video-popup-height-500 bg-overlay-black-50 bg-image mb-60" data-bs-bg="{{env('LANDING')}}/uploads/homes/{{$home->fb_pixels}}">
                         <a class="ltn__video-icon-2 ltn__video-icon-2-border---" href="https://www.youtube.com/embed/eWUxqVFBq74?autoplay=1&amp;showinfo=0" data-rel="lightcase:myCollection">
                             <i class="fa fa-play"></i>
                         </a>
@@ -529,42 +318,6 @@
             </div>
             <div class="col-lg-4">
                 <aside class="sidebar ltn__shop-sidebar ltn__right-sidebar---">
-                    <!-- Author Widget -->
-                    <div class="widget ltn__author-widget">
-                        <div class="ltn__author-widget-inner text-center">
-                            <img src="{{asset('theme/img/team/4.jpg')}}" alt="Image">
-                            <h5>Rosalina D. Willaimson</h5>
-                            <small>Traveller/Photographer</small>
-                            <div class="product-ratting">
-                                <ul>
-                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
-                                    <li><a href="#"><i class="far fa-star"></i></a></li>
-                                    <li class="review-total"> <a href="#"> ( 1 Reviews )</a></li>
-                                </ul>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis distinctio, odio, eligendi suscipit reprehenderit atque.</p>
-                            <div class="ltn__social-media">
-                                <ul>
-                                    <li><a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="#" title="Twitter"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#" title="Linkedin"><i class="fab fa-linkedin"></i></a></li>
-
-                                    <li><a href="#" title="Youtube"><i class="fab fa-youtube"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Search Widget -->
-                    <div class="widget ltn__search-widget">
-                        <h4 class="ltn__widget-title ltn__widget-title-border-2">Search Objects</h4>
-                        <form action="#">
-                            <input type="text" name="search" placeholder="Search your keyword...">
-                            <button type="submit"><i class="fas fa-search"></i></button>
-                        </form>
-                    </div>
                     <!-- Form Widget -->
                     <div class="widget ltn__form-widget">
                         <h4 class="ltn__widget-title ltn__widget-title-border-2">Drop Messege For Book</h4>
@@ -579,10 +332,12 @@
                     <div class="widget ltn__top-rated-product-widget">
                         <h4 class="ltn__widget-title ltn__widget-title-border-2">Top Rated Product</h4>
                         <ul>
+                            <?php $HomesRelated = DB::table('homes')->where('cat',$home->cat)->get(); ?>
+                            @foreach ($HomesRelated as $item)
                             <li>
                                 <div class="top-rated-product-item clearfix">
                                     <div class="top-rated-product-img">
-                                        <a href="product-details.html"><img src="{{asset('theme/img/product/1.png')}}" alt="#"></a>
+                                        <a href="{{url('/')}}/olinks-homes/{{$item->slung}}"><img src="{{env('LANDING')}}/uploads/homes/{{$item->fb_pixels}}" alt="{{$item->title}}"></a>
                                     </div>
                                     <div class="top-rated-product-info">
                                         <div class="product-ratting">
@@ -594,269 +349,29 @@
                                                 <li><a href="#"><i class="fas fa-star"></i></a></li>
                                             </ul>
                                         </div>
-                                        <h6><a href="product-details.html">Luxury House In Greenville </a></h6>
+                                        <h6><a href="{{url('/')}}/olinks-homes/{{$item->slung}}">{{$item->title}} </a></h6>
                                         <div class="product-price">
-                                            <span>KES30,000.00</span>
-                                            <del>KES35,000.00</del>
+                                            <span>From KES {{$item->price}}</span>
+
                                         </div>
                                     </div>
                                 </div>
                             </li>
-                            <li>
-                                <div class="top-rated-product-item clearfix">
-                                    <div class="top-rated-product-img">
-                                        <a href="product-details.html"><img src="{{asset('theme/img/product/2.png')}}" alt="#"></a>
-                                    </div>
-                                    <div class="top-rated-product-info">
-                                        <div class="product-ratting">
-                                            <ul>
-                                                <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <h6><a href="product-details.html">Apartment with Subunits</a></h6>
-                                        <div class="product-price">
-                                            <span>KES30,000.00</span>
-                                            <del>KES35,000.00</del>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="top-rated-product-item clearfix">
-                                    <div class="top-rated-product-img">
-                                        <a href="product-details.html"><img src="{{asset('theme/img/product/3.png')}}" alt="#"></a>
-                                    </div>
-                                    <div class="top-rated-product-info">
-                                        <div class="product-ratting">
-                                            <ul>
-                                                <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
-                                                <li><a href="#"><i class="far fa-star"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <h6><a href="product-details.html">3 Rooms Manhattan</a></h6>
-                                        <div class="product-price">
-                                            <span>KES30,000.00</span>
-                                            <del>KES35,000.00</del>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
+                            @endforeach
                         </ul>
                     </div>
                     <!-- Menu Widget (Category) -->
                     <div class="widget ltn__menu-widget ltn__menu-widget-2--- ltn__menu-widget-2-color-2---">
                         <h4 class="ltn__widget-title ltn__widget-title-border-2">Top Categories</h4>
                         <ul>
-                            <li><a href="#">Apartments <span>(26)</span></a></li>
-                            <li><a href="#">Picture Stodio <span>(30)</span></a></li>
-                            <li><a href="#">Office  <span>(71)</span></a></li>
-                            <li><a href="#">Luxary Vilas <span>(56)</span></a></li>
-                            <li><a href="#">Duplex House <span>(60)</span></a></li>
+                            <?php $Categories = DB::table('categories')->get(); ?>
+                            @foreach($Categories as $categories)
+                               <li><a href="#">{{$categories->title}} <span>(<?php echo count($HomesFetch = DB::table('homes')->where('cat',$categories->id)->get()) ?>)</span></a></li>
+                            @endforeach
                         </ul>
                     </div>
-                    <!-- Popular Product Widget -->
-                    <div class="widget ltn__popular-product-widget">
-                        <h4 class="ltn__widget-title ltn__widget-title-border-2">Popular Properties</h4>
-                        <div class="row ltn__popular-product-widget-active slick-arrow-1">
-                            <!-- ltn__product-item -->
-                            <div class="col-12">
-                                <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
-                                    <div class="product-img">
-                                        <a href="product-details.html"><img src="{{asset('theme/img/product-3/6.jpg')}}" alt="#"></a>
-                                        <div class="real-estate-agent">
-                                            <div class="agent-img">
-                                                <a href="team-details.html"><img src="{{asset('theme/img/blog/author.jpg')}}" alt="#"></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="product-price">
-                                            <span>KES349,00<label>/Month</label></span>
-                                        </div>
-                                        <h2 class="product-title"><a href="product-details.html">New Apartment Nice View</a></h2>
-                                        <div class="product-img-location">
-                                            <ul>
-                                                <li>
-                                                    <a href="product-details.html"><i class="flaticon-pin"></i> Belmont Gardens, Chicago</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <ul class="ltn__list-item-2--- ltn__list-item-2-before--- ltn__plot-brief">
-                                            <li><span>3 </span>
-                                                Bedrooms
-                                            </li>
-                                            <li><span>2 </span>
-                                                Bathrooms
-                                            </li>
-                                            <li><span>3450 </span>
-                                                square Ft
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- ltn__product-item -->
-                            <div class="col-12">
-                                <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
-                                    <div class="product-img">
-                                        <a href="product-details.html"><img src="{{asset('theme/img/product-3/4.jpg')}}" alt="#"></a>
-                                        <div class="real-estate-agent">
-                                            <div class="agent-img">
-                                                <a href="team-details.html"><img src="{{asset('theme/img/blog/author.jpg')}}" alt="#"></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="product-price">
-                                            <span>KES349,00<label>/Month</label></span>
-                                        </div>
-                                        <h2 class="product-title"><a href="product-details.html">New Apartment Nice View</a></h2>
-                                        <div class="product-img-location">
-                                            <ul>
-                                                <li>
-                                                    <a href="product-details.html"><i class="flaticon-pin"></i> Belmont Gardens, Chicago</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <ul class="ltn__list-item-2--- ltn__list-item-2-before--- ltn__plot-brief">
-                                            <li><span>3 </span>
-                                                Bedrooms
-                                            </li>
-                                            <li><span>2 </span>
-                                                Bathrooms
-                                            </li>
-                                            <li><span>3450 </span>
-                                                square Ft
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- ltn__product-item -->
-                            <div class="col-12">
-                                <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
-                                    <div class="product-img">
-                                        <a href="product-details.html"><img src="{{asset('theme/img/product-3/5.jpg')}}" alt="#"></a>
-                                        <div class="real-estate-agent">
-                                            <div class="agent-img">
-                                                <a href="team-details.html"><img src="{{asset('theme/img/blog/author.jpg')}}" alt="#"></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="product-price">
-                                            <span>KES349,00<label>/Month</label></span>
-                                        </div>
-                                        <h2 class="product-title"><a href="product-details.html">New Apartment Nice View</a></h2>
-                                        <div class="product-img-location">
-                                            <ul>
-                                                <li>
-                                                    <a href="product-details.html"><i class="flaticon-pin"></i> Belmont Gardens, Chicago</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <ul class="ltn__list-item-2--- ltn__list-item-2-before--- ltn__plot-brief">
-                                            <li><span>3 </span>
-                                                Bedrooms
-                                            </li>
-                                            <li><span>2 </span>
-                                                Bathrooms
-                                            </li>
-                                            <li><span>3450 </span>
-                                                square Ft
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--  -->
-                        </div>
-                    </div>
-                    <!-- Popular Post Widget -->
-                    <div class="widget ltn__popular-post-widget">
-                        <h4 class="ltn__widget-title ltn__widget-title-border-2">Leatest Blogs</h4>
-                        <ul>
-                            <li>
-                                <div class="popular-post-widget-item clearfix">
-                                    <div class="popular-post-widget-img">
-                                        <a href="blog-details.html"><img src="{{asset('theme/img/team/5.jpg')}}" alt="#"></a>
-                                    </div>
-                                    <div class="popular-post-widget-brief">
-                                        <h6><a href="blog-details.html">Lorem ipsum dolor sit
-                                            cing elit, sed do.</a></h6>
-                                        <div class="ltn__blog-meta">
-                                            <ul>
-                                                <li class="ltn__blog-date">
-                                                    <a href="#"><i class="far fa-calendar-alt"></i>June 22, 2020</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="popular-post-widget-item clearfix">
-                                    <div class="popular-post-widget-img">
-                                        <a href="blog-details.html"><img src="{{asset('theme/img/team/6.jpg')}}" alt="#"></a>
-                                    </div>
-                                    <div class="popular-post-widget-brief">
-                                        <h6><a href="blog-details.html">Lorem ipsum dolor sit
-                                            cing elit, sed do.</a></h6>
-                                        <div class="ltn__blog-meta">
-                                            <ul>
-                                                <li class="ltn__blog-date">
-                                                    <a href="#"><i class="far fa-calendar-alt"></i>June 22, 2020</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="popular-post-widget-item clearfix">
-                                    <div class="popular-post-widget-img">
-                                        <a href="blog-details.html"><img src="{{asset('theme/img/team/7.jpg')}}" alt="#"></a>
-                                    </div>
-                                    <div class="popular-post-widget-brief">
-                                        <h6><a href="blog-details.html">Lorem ipsum dolor sit
-                                            cing elit, sed do.</a></h6>
-                                        <div class="ltn__blog-meta">
-                                            <ul>
-                                                <li class="ltn__blog-date">
-                                                    <a href="#"><i class="far fa-calendar-alt"></i>June 22, 2020</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="popular-post-widget-item clearfix">
-                                    <div class="popular-post-widget-img">
-                                        <a href="blog-details.html"><img src="{{asset('theme/img/team/8.jpg')}}" alt="#"></a>
-                                    </div>
-                                    <div class="popular-post-widget-brief">
-                                        <h6><a href="blog-details.html">Lorem ipsum dolor sit
-                                            cing elit, sed do.</a></h6>
-                                        <div class="ltn__blog-meta">
-                                            <ul>
-                                                <li class="ltn__blog-date">
-                                                    <a href="#"><i class="far fa-calendar-alt"></i>June 22, 2020</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+
+
                     <!-- Social Media Widget -->
                     <div class="widget ltn__social-media-widget">
                         <h4 class="ltn__widget-title ltn__widget-title-border-2">Follow us</h4>
@@ -866,7 +381,7 @@
                                 <li><a href="#" title="Twitter"><i class="fab fa-twitter"></i></a></li>
                                 <li><a href="#" title="Linkedin"><i class="fab fa-linkedin"></i></a></li>
                                 <li><a href="#" title="Instagram"><i class="fab fa-instagram"></i></a></li>
-
+                                <li><a href="#" title="Youtube"><i class="fab fa-youtube"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -874,20 +389,10 @@
                     <div class="widget ltn__tagcloud-widget">
                         <h4 class="ltn__widget-title ltn__widget-title-border-2">Popular Tags</h4>
                         <ul>
-                            <li><a href="#">Popular</a></li>
-                            <li><a href="#">desgin</a></li>
-                            <li><a href="#">ux</a></li>
-                            <li><a href="#">usability</a></li>
-                            <li><a href="#">develop</a></li>
-                            <li><a href="#">icon</a></li>
-                            <li><a href="#">Car</a></li>
-                            <li><a href="#">Service</a></li>
-                            <li><a href="#">Repairs</a></li>
-                            <li><a href="#">Auto Parts</a></li>
-                            <li><a href="#">Oil</a></li>
-                            <li><a href="#">Dealer</a></li>
-                            <li><a href="#">Oil Change</a></li>
-                            <li><a href="#">Body Color</a></li>
+                            <?php $Services = DB::table('services')->get(); ?>
+                            @foreach ($Services as $item)
+                            <li><a href="{{env('LANDING')}}/our-services/{{$item->slung}}">{{$item->title}}</a></li>
+                            @endforeach
                         </ul>
                     </div>
                     <!-- Banner Widget -->

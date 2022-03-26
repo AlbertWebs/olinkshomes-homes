@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Home;
 use DB;
 
 class HomeController extends Controller
@@ -13,7 +14,8 @@ class HomeController extends Controller
     }
 
     public function homes(){
-        return view('front.homes');
+        $Homes = Home::all();
+        return view('front.homes', compact('Homes'));
     }
 
     public function home($slung){
