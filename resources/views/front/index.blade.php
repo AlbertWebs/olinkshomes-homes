@@ -292,7 +292,7 @@
                         </div>
                         <div class="product-info">
                             <div class="product-price">
-                                <span>From<label> KES {{$featured->price}}</label></span>
+                                <span><label>From </label> KES {{$featured->price}}</span>
                             </div>
                             <h2 class="product-title"><a href="{{url('/')}}/olinks-homes/{{$featured->slung}}">{{$featured->title}}</a></h2>
                             <div class="product-description">

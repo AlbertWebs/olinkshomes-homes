@@ -67,7 +67,7 @@
                                 </div>
                                 @foreach ($Homes as $homes)
                                 <!-- ltn__product-item -->
-                                <div class="col-lg-4 col-sm-6 col-12">
+                                <div class="col-lg-6 col-sm-6 col-12">
                                     <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
                                         <div class="product-img">
                                             <a href="{{url('/')}}/olinks-homes/{{$homes->slung}}"><img src="{{env('LANDING')}}/uploads/homes/{{$homes->fb_pixels}}" alt="#"></a>
@@ -94,7 +94,8 @@
                                         </div>
                                         <div class="product-info-bottom">
                                             <div class="product-price">
-                                                <span>From KES{{$homes->price}}</label></span>
+                                                {{-- <span>From KES{{$homes->price}}</label></span> --}}
+                                                <span><label>From </label> KES {{$homes->price}}</span>
                                             </div>
                                         </div>
                                     </div>
